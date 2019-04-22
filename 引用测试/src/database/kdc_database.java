@@ -1,6 +1,6 @@
-package ÒıÓÃ²âÊÔ;
+package database;
 import java.sql.*;
-public class test {
+public class  kdc_database{
 	public static Connection conn = null;
 	public static Statement stmt = null;
 	
