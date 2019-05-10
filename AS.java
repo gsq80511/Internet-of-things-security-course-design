@@ -1,4 +1,4 @@
-package AS;
+package as;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-//ASæœåŠ¡å™¨
+//AS·şÎñÆ÷
 
 
 public class AS{
@@ -17,7 +17,7 @@ public class AS{
         ServerSocket serverSocket = new ServerSocket(5299);
         System.out.println("server start at:" + new Date());
         Mythread a = new Mythread();
-        //æ¥æ”¶ + å¤„ç†
+        //½ÓÊÕ + ´¦Àí
         while (true) {
             Socket socket = serverSocket.accept();
             a.setSocket(socket);
@@ -27,7 +27,7 @@ public class AS{
 }
     class Mythread  implements Runnable{
     	/*
-    	 * æŠŠå­—ç¬¦ä¸²è¡¥0ï¼Œè¡¥æˆ64çš„æ•´æ•°å€
+    	 * °Ñ×Ö·û´®²¹0£¬²¹³É64µÄÕûÊı±¶
     	 */
     	public static int patch(String[] a)
     	{
@@ -45,7 +45,7 @@ public class AS{
     		
     	}
     	/*
-    	 *åè¿›åˆ¶è½¬äºŒè¿›åˆ¶ 
+    	 *Ê®½øÖÆ×ª¶ş½øÖÆ 
     	 */
     	public static int[] binaryToDecimal(int n){
     		 	int j[] = new int[8];
@@ -57,7 +57,7 @@ public class AS{
     			    return j;
     	 }
     	/*
-    	 * è¾“å…¥ä¸€ä¸²å­—ç¬¦ä¸²ï¼Œè½¬æˆäºŒè¿›åˆ¶
+    	 * ÊäÈëÒ»´®×Ö·û´®£¬×ª³É¶ş½øÖÆ
     	 */
     	public static String zhuan(String daizhuan) 
     	{
@@ -65,21 +65,21 @@ public class AS{
     		char M[] = daizhuan.toCharArray();
     		int M1[] = new int[M.length];
     		int []tmp = new int[8]; 
-    		String s ="";  //è¿›è¡ŒäºŒè¿›åˆ¶çš„ç´¯åŠ 
+    		String s ="";  //½øĞĞ¶ş½øÖÆµÄÀÛ¼Ó
     		for(int i=0;i<M.length;i++)
     		{
-    			M1[i] = M[i]-'0'; //æ¯ä¸€ä½éƒ½æ˜¯intäº†ï¼Œç°åœ¨å¼€å§‹è½¬æ¢äºŒè¿›åˆ¶
-    			tmp =  binaryToDecimal(M1[i]); //æ¯ä¸€ä½éƒ½è½¬æˆäº†äºŒè¿›åˆ¶
+    			M1[i] = M[i]-'0'; //Ã¿Ò»Î»¶¼ÊÇintÁË£¬ÏÖÔÚ¿ªÊ¼×ª»»¶ş½øÖÆ
+    			tmp =  binaryToDecimal(M1[i]); //Ã¿Ò»Î»¶¼×ª³ÉÁË¶ş½øÖÆ
     			    for(int j =0;j<8;j++)
     			    {
-    			    	s = s + String.valueOf(tmp[j]); //åŠ å…¥stringä¸­
+    			    	s = s + String.valueOf(tmp[j]); //¼ÓÈëstringÖĞ
     			    	
     			    }
     		}
      		return s;	
     	}
     	/*
-    	 * éšæœºç”Ÿæˆ56ä½ä¼šè¯å¯†é’¥
+    	 * Ëæ»úÉú³É56Î»»á»°ÃÜÔ¿
     	 * 
     	 */
     	public static String create_sessionkey()
@@ -88,51 +88,51 @@ public class AS{
     		String s = "";
     		for(int i=0;i<56;i++)
     		{
-    			int r = (int)(2*Math.random()); //æ¯æ¬¡ç”Ÿæˆ0å’Œ1 
+    			int r = (int)(2*Math.random()); //Ã¿´ÎÉú³É0ºÍ1 
     			s = s + r;
     		}
     		return s;
     	}
     	/*
-    	 * åˆ¤æ–­æ˜¯å¦åŒæ­¥å‡½æ•°
+    	 * ÅĞ¶ÏÊÇ·ñÍ¬²½º¯Êı
     	 */
     	public static boolean  Confirm_syn(String TS) throws ParseException
     	{
-    		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//è®¾ç½®æ—¥æœŸæ ¼å¼
+    		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//ÉèÖÃÈÕÆÚ¸ñÊ½
     		Date utilDate = df.parse(TS);
     		double ts = utilDate.getTime();
     		System.out.println(ts);
-    		double syn_time = Double.parseDouble("300"); //è¿™é‡Œä¸300sè¿›è¡Œæ¯”è¾ƒ
+    		double syn_time = Double.parseDouble("300"); //ÕâÀïÓë300s½øĞĞ±È½Ï
     		System.out.println(syn_time );
     		double cha = new Date().getTime()-ts;
     		cha = cha/1000;
     		System.out.println("cha"+cha);
     		if(cha>=syn_time)
     		{
-    			System.out.println("ç¥¨æ®è¶…æ—¶");
+    			System.out.println("Æ±¾İ³¬Ê±");
     			return false;
     		}
     		else 
     		{
-    			System.out.println("ç¥¨æ®æ²¡æœ‰è¿‡æœŸ");
+    			System.out.println("Æ±¾İÃ»ÓĞ¹ıÆÚ");
     			return true;
     		}	
     		
     	}
     	/*
-    	 * åˆ¤æ–­ç¥¨æ®æ˜¯å¦è¶…æ—¶
+    	 * ÅĞ¶ÏÆ±¾İÊÇ·ñ³¬Ê±
     	 */
     	public static boolean Confirm_time(String TS,String lifetime) throws ParseException
     	{
-    	 //TSä¸ºç¥¨æ®æ—¶é—´ï¼Œgetç°åœ¨çš„æ—¶é—´ï¼Œä½œå·®ä¸lifetimeæ¯”è¾ƒã€‚å¤§äºè¶…æœŸï¼Œè¿”å›trueã€‚
-    		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//è®¾ç½®æ—¥æœŸæ ¼å¼
+    	 //TSÎªÆ±¾İÊ±¼ä£¬getÏÖÔÚµÄÊ±¼ä£¬×÷²îÓëlifetime±È½Ï¡£´óÓÚ³¬ÆÚ£¬·µ»Øtrue¡£
+    		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//ÉèÖÃÈÕÆÚ¸ñÊ½
     		Date utilDate = df.parse(TS);
     		double ts = utilDate.getTime();
     		double lifetime1 = Integer.parseInt(lifetime);
     		double cha = new Date().getTime()-ts;
     		if(cha>=lifetime1)
     		{
-    			System.out.println("è¶…æ—¶");
+    			System.out.println("³¬Ê±");
     			return false;
     		}
     		else 
@@ -142,7 +142,7 @@ public class AS{
     		
     	}
     	/*
-    	 * ç”ŸæˆTS
+    	 * Éú³ÉTS
     	 */
     	public static String Create_TS()
         {
@@ -154,7 +154,7 @@ public class AS{
         }
     	
     	/*
-    	 * ç¥¨æ®ï¼Œè¿”å›è¡¥çš„0ï¼Œå€¼ä¼ ç»™ticket
+    	 * Æ±¾İ£¬·µ»Ø²¹µÄ0£¬Öµ´«¸øticket
     	 */
     	public static int CreateTicket(String[] ticket,String keydes,String sessionkey,String TS,String lifetime)
     	{
@@ -167,20 +167,20 @@ public class AS{
     		String[] data = new String[1];
     		data[0] = sessionkey + IDc + ADczhuan + IDtgs + TS + lifetime;
     		int databu = patch(data);
-    		ticket[0] = data[0];  //å…¶å®è¦keydes åŠ å¯†åçš„
+    		ticket[0] = data[0];  //ÆäÊµÒªkeydes ¼ÓÃÜºóµÄ
     		return databu; 
     		
     	}
     
     	/*
-    	 * ç”±ä¸Šä¸€æ­¥åŒ… è¿”å›ä¸‹ä¸€æ­¥è¦å‘é€çš„åŒ…å’Œå‡ºé”™ä¿¡æ¯
+    	 * ÓÉÉÏÒ»²½°ü ·µ»ØÏÂÒ»²½Òª·¢ËÍµÄ°üºÍ³ö´íĞÅÏ¢
     	 */
         public static String split(String get)
     	{
-        	//ä¸­é€”æœ‰æ¢å¤æ˜¾ç¤ºçš„è¿˜è¦settextã€‚
-    		//å·²çŸ¥çŠ¶æ€ç å‰4ä½ï¼Œå†—ä½™6ä½ï¼Œä¿ç•™24ï¼Œdataæ ¼å¼å·²çŸ¥ã€‚
+        	//ÖĞÍ¾ÓĞ»Ö¸´ÏÔÊ¾µÄ»¹Òªsettext¡£
+    		//ÒÑÖª×´Ì¬ÂëÇ°4Î»£¬ÈßÓà6Î»£¬±£Áô24£¬data¸ñÊ½ÒÑÖª¡£
         	String state,remnant,blank,data;
-        	//substring å·¦é—­å³å¼€
+        	//substring ×ó±ÕÓÒ¿ª
         	state = get.substring(0, 4);
         	remnant = get.substring(4, 10); 
         	int duoyu = 0;
@@ -196,29 +196,29 @@ public class AS{
         	data = get.substring(34,get.length()-duoyu); 
         	/*
         	 * normal
-        	 * 0001 C->ASç”³è¯·ç¥¨æ® 
-        	 * 0010 AS->Cè¿”å›ç¥¨æ®
+        	 * 0001 C->ASÉêÇëÆ±¾İ 
+        	 * 0010 AS->C·µ»ØÆ±¾İ
         	 */
         	if(state.equals("0001"))
         	{
         		String IDc = data.substring(0, 4);
         		String IDtgs = data.substring(4, 8);
         		String TS1 = data.substring(8, 160);
-        		//å…ˆåˆ¤æ–­åŒæ­¥ï¼Ÿä¸åŒæ­¥è¿”å›ç›¸åº”å‡ºé”™ç 
+        		//ÏÈÅĞ¶ÏÍ¬²½£¿²»Í¬²½·µ»ØÏàÓ¦³ö´íÂë
         		/*if(!Confirm_syn(TS1))
         		{
         			return "1001"+"000000"+"000000000000000000000000"+"0100";
         		}*/
-        		//IDc database æ‰¾åˆ°è¿”å›åŠ å¯† æ‰¾ä¸åˆ°
+        		//IDc database ÕÒµ½·µ»Ø¼ÓÃÜ ÕÒ²»µ½
         		if(true)
         		{
-        			//ç”¨Cçš„å¯†é’¥åŠ å¯†å‘é€ã€‚
-        			//å‡è®¾Kc,56ä½çš„0å’Œ1 ,DES
-        	    	String Kc = "00000000000000000000000000000000000000000000000000000";  //æ ¹æ®æ•°æ®åº“å£ä»¤ç”Ÿæˆçš„
+        			//ÓÃCµÄÃÜÔ¿¼ÓÃÜ·¢ËÍ¡£
+        			//¼ÙÉèKc,56Î»µÄ0ºÍ1 ,DES
+        	    	String Kc = "00000000000000000000000000000000000000000000000000000";  //¸ù¾İÊı¾İ¿â¿ÚÁîÉú³ÉµÄ
         	    	String Ktgs = "00000000000000000000000000000000000000000000000000000"; 
-        	    	//ä¼šè¯å¯†é’¥ä¸´æ—¶ç”Ÿæˆ
+        	    	//»á»°ÃÜÔ¿ÁÙÊ±Éú³É
         	    	String Kc_tgs = create_sessionkey();
-        	    	System.out.println("ä¸´æ—¶ç”Ÿæˆçš„ä¼šè¯å¯†é’¥ä¸ºï¼š"+ Kc_tgs);
+        	    	System.out.println("ÁÙÊ±Éú³ÉµÄ»á»°ÃÜÔ¿Îª£º"+ Kc_tgs);
         	    	String TS2 = Create_TS();
         	    	String TSzhuan = zhuan(TS2);
         	    	String lifetime2 = "99999";
@@ -228,11 +228,11 @@ public class AS{
         	    	String[] as_dao_c = new String[1];
         	    	as_dao_c[0] = Kc_tgs+IDtgs + TSzhuan + lifetimezhuan+ ticket[0];
         	    	int buas_dao_c = patch(as_dao_c);
-        	    	//ä¼ è¾“ asdaoc ï¼Œè®°å¾—åŠ å¯†ã€‚ï¼ï¼ï¼
+        	    	//´«Êä asdaoc £¬¼ÇµÃ¼ÓÃÜ¡££¡£¡£¡
         	    	return "0010"+"00000100"+"000000000000000000000000"+as_dao_c[0];
         			
         		}
-        		//ä¸¤ç§æƒ…å†µ
+        		//Á½ÖÖÇé¿ö
         		else 
         		{
         			return "1001"+"000000"+"000000000000000000000000"+"0010";
@@ -258,7 +258,7 @@ public class AS{
                     DataOutputStream output = new DataOutputStream(socket.getOutputStream());
                     String receive1 = input.readUTF();
                     System.out.println("IDC ||IDtgs ||TS1"+receive1);
-                    //æ¥æ”¶åˆ°çš„
+                    //½ÓÊÕµ½µÄ
                     String fa = split(receive1);
                     System.out.println("Kc,tgs || IDtgs || TS2 || Lifetime2 || Tickettgs"+fa);
                     output.writeUTF(fa);
