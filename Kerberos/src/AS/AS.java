@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import DES.*;
+import RSA.rsa;
+//import RSA.*;
 //AS服务器
 import DB.mysql;
 
@@ -21,12 +23,24 @@ public class AS{
         //接收 + 处理
         while (true) {
             Socket socket = serverSocket.accept();
+            System.out.println("server accept");
             a.setSocket(socket);
             new Thread(a).start();
+            /*while(socket.isClosed()==true) {
+            socket = serverSocket.accept();
+            a.setSocket(socket);
+            new Thread(a).start();
+            }*/
+            
         }
     }
 }
     class Mythread  implements Runnable{
+    	private static String AS_PersonalKey="1904224418687832290207474351710659851362039131403472121260109147765768320665288691837384302733004665164426618537907696015945110556503320283527137259190913";
+        private static String AS_PublicKey="7168130713816454038100358793110942830483283087581237932856046709771692040864103191351343603638539598982200762071731689360973274442110986430996112040029763";
+
+
+    
     	/*
     	 * 把字符串补0，补成64的整数倍
     	 */
@@ -238,6 +252,7 @@ public class AS{
         		if(!mysql.search_UID(IDc))
         		{
         			System.out.println("找不到用户");
+        			writelog.write_log(Create_TS()+"找不到用户","src//AS//");
         			return "1001"+"000000"+"000000000000000000000000"+"0001";
         		}
         		else
@@ -264,14 +279,19 @@ public class AS{
         	    	CreateTicket(ticket,Ktgs,Kc_tgs,TSzhuan,lifetimezhuan,IDc,IDtgs);
         	    	System.out.println("AS生成的TGS票据"+ticket[0]);
         	    	String[] as_dao_c = new String[1];
-        	    	as_dao_c[0] = Kc_tgs+IDtgs + TSzhuan + lifetimezhuan+ ticket[0];
+        	    	as_dao_c[0] = Kc_tgs+zhuan(IDtgs) + TSzhuan + lifetimezhuan+ ticket[0];
         	    	int buas_dao_c = patch(as_dao_c);
         	    	String send = "0010"+"111100"+"000000000000000000000000" + as_dao_c[0];
         	    	System.out.println("加密前data"+ as_dao_c[0]);
         	    	String jmh = DES_wzj.des_jia_da(as_dao_c[0], Kc) ;
-        	    	String sendz = "0010"+"111100"+"000000000000000000000000" + jmh ;
+        	    	String sendz = "0010"+"100000"+"000000000000000000000000" + jmh ;
         	    	System.out.println("加密后data"+jmh);
         	    	
+//        	       	String xs_send = decimaltox(send);
+//        	    	String xs_sendz = decimaltox(sendz);
+//        	    	String xs_Kc_tgs = decimaltox(Kc_tgs);
+//        	    	String xs_Kc = decimaltox(Kc);
+//        	    	new uias(xs_send,xs_sendz,xs_Kc_tgs,xs_Kc);
         	    	new uias(send,sendz,Kc_tgs,Kc);
         	    	//传输 asdaoc ，记得加密。！！！
         	    	return sendz;
@@ -281,14 +301,48 @@ public class AS{
 
         	
         	//注册！！！！！
-        	else if(state.equals("0111"))
-        			
-        			{
-        		
-        			}
-        	return get;
-    	}
+            else if(state.equals("0111"))
 
+                    {
+            	data=rsa.RSA_Decryption(data,AS_PersonalKey,AS_PublicKey);
+
+                        String IDc = data.substring(0, 4);
+                        String pwd=data.substring(4,12);
+                        /*String Kc = zhuan(mysql.search_pw(IDc));*/
+                        /*System.out.println("server收到了"+IDc +"的请求");
+                        String IDtgs = data.substring(4, 8);
+                        String TS1 = data.substring(8, 160);*/
+                          if(mysql.search_UID(IDc))//用户民已经存在
+                        {
+                            System.out.println("该用户已经存在");
+                            String Kc = zhuan(pwd);
+                            String[] errorcode_0 = new String[1];
+                            errorcode_0[0] = "1111";
+                            patch(errorcode_0);
+                            String errorcode=errorcode_0[0];
+                            String jmh = DES_wzj.des_jia_da(errorcode, Kc) ;
+                            String sendz = "1001" + "000000" + "000000000000000000000000" + jmh ;
+                            //System.out.println(jmh);
+                            return sendz;
+                        }
+                          else if(!mysql.search_UID(IDc))
+                        {
+                            mysql.insert(IDc,pwd);
+                            String Kc = zhuan(pwd);
+                            String[] errorcode_0 = new String[1];
+                            errorcode_0[0] = "1111";
+                            patch(errorcode_0);
+                            String errorcode=errorcode_0[0];
+                            String jmh = DES_wzj.des_jia_da(errorcode,Kc ) ;
+                            String sendz = "1000" + "000000" + "000000000000000000000000" + jmh ;
+                            //System.out.println(jmh);
+                            return sendz;
+                            //return "1000" + "000000" + "000000000000000000000000" + "0000";
+                        }
+                    }
+        	return get;
+    	
+    	}
         Socket socket;
         public void setSocket(Socket socket){
             this.socket = socket;
@@ -310,8 +364,9 @@ public class AS{
                     output.writeUTF(fa);
                     
                     output.flush();
-                    socket.shutdownOutput();
-                    socket.close();
+                    //socket.shutdownOutput();
+                    //socket.close();
+                    
                 } catch (
                         IOException e) {
                     e.printStackTrace();
@@ -320,6 +375,64 @@ public class AS{
 					e.printStackTrace();
 				}
             }
+
+        	public static String decimaltox(String x1)
+        	{
+        		
+        		char[] x = x1.toCharArray();
+        		int length = x.length;
+        		char[] k = new char[length/4];
+        		int[] r =new int[4];
+        		int temp ;
+        		for(int i=0,j=0;i+3<length;i=i+4,j++)
+        		{
+        			r[0] = x[i]-'0';
+        			r[1] = x[i+1]-'0';
+        			r[2] = x[i+2]-'0';
+        			r[3] = x[i+3]-'0';
+        			temp = r[0]*8+r[1]*4+r[2]*2+r[3];
+        			
+        			if(temp<10)
+        			{
+        				String str1 = String.valueOf(temp);
+        				//k[j]=str1;
+        				///char[] arr = str1.toCharArray();
+        				/*for (int j = 0; j < arr.length; j++) {
+        				    System.out.print(arr[j]);
+        				}*/
+        				//k[j]=arr[arr.length-1];
+        			}
+        			else if(temp==10)
+        			{
+        				k[j]='A';
+        			}
+        			else if(temp==11)
+        			{
+        				k[j]='B';
+        			}
+        			else if(temp==12)
+        			{
+        				k[j]='C';
+        			}
+        			else if(temp==13)
+        			{
+        				k[j]='D';
+        			}
+        			else if(temp==14)
+        			{
+        				k[j]='E';
+        			}
+        			else if(temp==15)
+        			{
+        				k[j]='F';
+        			}
+        			
+        			
+        		}
+        		String k1 = k.toString();
+        		return k1;
+        	}
+        
 
     }
 
