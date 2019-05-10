@@ -245,6 +245,7 @@ public class AS{
         		//先判断同步？不同步返回相应出错码
         		if(!Confirm_syn(TS1))
         		{
+        			writelog.write_log(Create_TS()+" 不同步","src//AS//");
         			return "1001"+"000000"+"000000000000000000000000"+"0100";
                 }
         		
@@ -253,7 +254,7 @@ public class AS{
         		if(!mysql.search_UID(IDc))
         		{
         			System.out.println("找不到用户");
-        			writelog.write_log(Create_TS()+"找不到用户","src//AS//");
+        			writelog.write_log(Create_TS()+" 找不到用户","src//AS//");
         			return "1001"+"000000"+"000000000000000000000000"+"0001";
         		}
         		else

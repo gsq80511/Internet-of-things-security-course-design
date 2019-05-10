@@ -279,8 +279,8 @@ public class uitwo {
             //先把data+hs取出
             //hs true？
             //然后set出来
-            //if(sig) //认证成功发送到聊天框
-            if(true)
+            if(sig) //认证成功发送到聊天框
+            //if(true)
             {
             	//分解data
             	String uid=data.substring(0, 4);

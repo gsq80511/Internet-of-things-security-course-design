@@ -23,7 +23,7 @@ public class NIOSServer {
 	private static String qs = "104461480968707719516839818238749079435408057381727391771233227567281594756461";
     private static BigInteger q = new BigInteger(qs);
     private static String ds = "3877372409060704075259723321701467874752967566907935988701223328597625701427459894896059162217263599422703515642741056725228000387855616606542605322884993";
-    private static BigInteger d = new BigInteger(ds);;
+    private static BigInteger d = new BigInteger(ds);
     private static BigInteger n  = p.multiply(q);
     private static BigInteger e = BigInteger.valueOf(65537);
     
@@ -186,14 +186,14 @@ public class NIOSServer {
               BigInteger kc =new BigInteger(V.users_Kc.get(uid));//用户公钥
               String h = hash_sig.unSign(hs,kc);
               boolean sighash = false;
-              sighash = hash_sig.hash_verify(data,h,kc);
+              sighash = hash_sig.hash_verify(data,hs,kc);
               String[] send = new String[1];
               String remsixv = null;
-             //if(sighash)
-              if(true)
+             if(sighash)
+              //if(true)
               {
               	//进行V的私钥加密，h
-              	String hsv =hash_sig.Sign(h, d, n); //签名后加在尾巴
+              	String hsv =hash_sig.Sign(data, d, n); //签名后加在尾巴
               	send[0] = data + hsv;
               	int bu = patch(send);
               	remsixv = binaryToDecimalsix(bu);

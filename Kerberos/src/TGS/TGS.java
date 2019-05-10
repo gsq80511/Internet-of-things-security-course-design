@@ -289,7 +289,7 @@ public static void main(String[] args) throws IOException {
             			return "1001"+"000000"+"000000000000000000000000"+"0100";
             		}*/
               String IDtgs = "1101";
-              String Ktgs =  zhuan(mysql.search_pw(IDtgs));
+              String Ktgs =  zhuan("11111111");
               System.out.println("TGS收到的票据 解密前"+ Ticket_tgs);
 
               String jiet = DES_wzj.des_jie_da(Ticket_tgs, Ktgs);

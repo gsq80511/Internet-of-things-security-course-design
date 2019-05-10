@@ -184,7 +184,7 @@ public class ui {
 				//AS_PublicKey=readSSL.readSSL();
 				String filepath="";
 				//AS_PublicKey=readSSL.readSSL(filepath);
-				AS_PublicKey="65537";
+				AS_PublicKey="7168130713816454038100358793110942830483283087581237932856046709771692040864103191351343603638539598982200762071731689360973274442110986430996112040029763";
 				data=rsa.RSA_Encryption(data,AS_PublicKey);
 				String send=state+remnant+blank+data;
 				output.writeUTF(send);
