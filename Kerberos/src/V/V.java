@@ -1,4 +1,4 @@
-package AS;
+package V;
 
 
 import java.io.BufferedReader;
@@ -24,7 +24,21 @@ import java.util.List;
 import java.util.Map;
 
 import DES.DES_wzj;
-
+class Ticket
+{
+	public String Ksession;
+	public String IDc;
+	public String ADc;
+	public String IDt_v;
+	public String TS;
+	public String lifetime;
+}
+class Authenticator
+{
+	public String IDc;
+	public String ADc;
+	public String TS;
+}
 
 public class V {
 

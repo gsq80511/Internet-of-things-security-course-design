@@ -1,4 +1,4 @@
-package AS;
+package UI;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -38,6 +38,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import DES.DES_wzj;
+import RSA.MR;
 import RSA.RSAAA;
 import RSA.hash_sig;
 

@@ -1,4 +1,4 @@
-package AS;
+package TGS;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

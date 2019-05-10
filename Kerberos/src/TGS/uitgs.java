@@ -1,4 +1,4 @@
-package AS;
+package TGS;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
