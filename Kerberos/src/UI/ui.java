@@ -32,60 +32,60 @@ import RSA.rsa;
 
 
 public class ui {
-    //å†…éƒ¨ç±»ï¼Œç›‘å¬äº‹ä»¶ï¼Ÿ
+    //ÄÚ²¿Àà£¬¼àÌıÊÂ¼ş£¿
 	static String Kctgs;
 	static String Kcv;
 	static String IDc;
 	static String TS5;
-	private static String adress_as = "127.0.0.1";
+	private static String adress_as = "127.0.0.1";         //nihao
 	private static String adress_tgs = "127.0.0.1";
 	private static String adress_v = "127.0.0.1";
-	JFrame jFrame = new JFrame("ç™»å½•");
+	JFrame jFrame = new JFrame("µÇÂ¼");
     private Container c = jFrame.getContentPane();
-    private JLabel a1 = new JLabel("ç”¨æˆ·å");
+    private JLabel a1 = new JLabel("ÓÃ»§Ãû");
     private JTextField username = new JTextField();
-    private JLabel a2 = new JLabel("å¯†   ç ");
+    private JLabel a2 = new JLabel("ÃÜ   Âë");
     
     private JTextField password = new JTextField();
     
     private JTextField zhuce = new JTextField();
     
-    private JButton button1 = new JButton("ç¡®å®š");
-    private JButton button2 = new JButton("å–æ¶ˆ");
-    private JButton button3 = new JButton("æ³¨å†Œ");
+    private JButton button1 = new JButton("È·¶¨");
+    private JButton button2 = new JButton("È¡Ïû");
+    private JButton button3 = new JButton("×¢²á");
 	 private class SimpleListener implements ActionListener
    {
      /**
-  ã€€ã€€ * åˆ©ç”¨è¯¥å†…éƒ¨ç±»æ¥ç›‘å¬æ‰€æœ‰äº‹ä»¶æºäº§ç”Ÿçš„äº‹ä»¶
-   ã€€ * ä¾¿äºå¤„ç†äº‹ä»¶ä»£ç æ¨¡å—åŒ–
-   ã€€ */
+  ¡¡¡¡ * ÀûÓÃ¸ÃÄÚ²¿ÀàÀ´¼àÌıËùÓĞÊÂ¼şÔ´²úÉúµÄÊÂ¼ş
+   ¡¡ * ±ãÓÚ´¦ÀíÊÂ¼ş´úÂëÄ£¿é»¯
+   ¡¡ */
 		 
 		 public void actionPerformed(ActionEvent e) 
 		 {
 			 String buttonName = e.getActionCommand();
-           	if (buttonName.equals("ç¡®å®š"))
+           	if (buttonName.equals("È·¶¨"))
            	{
         	   String name = username.getText();
         	   String pwd = password.getText();
         	   if(name.equals("")||pwd.equals("")||name==""||pwd=="")
         	   {
-        		   JOptionPane.showMessageDialog(null, "è¯·è¾“å…¥å®Œæ•´ä¿¡æ¯", "", JOptionPane.ERROR_MESSAGE);
+        		   JOptionPane.showMessageDialog(null, "ÇëÊäÈëÍêÕûĞÅÏ¢", "", JOptionPane.ERROR_MESSAGE);
         		   return;
         	   }
         	   if(name.length()!=4)
         	   {
-        		   JOptionPane.showMessageDialog(null, "ç”¨æˆ·å4ä½", "", JOptionPane.ERROR_MESSAGE);
+        		   JOptionPane.showMessageDialog(null, "ÓÃ»§Ãû4Î»", "", JOptionPane.ERROR_MESSAGE);
         		   return;
         	   }
         	   if(pwd.length()!=8)
         	   {
-        		   JOptionPane.showMessageDialog(null, "å¯†ç 8ä½", "", JOptionPane.ERROR_MESSAGE);
+        		   JOptionPane.showMessageDialog(null, "ÃÜÂë8Î»", "", JOptionPane.ERROR_MESSAGE);
         		   return;
         	   }
         	   
         	   System.out.println(name+pwd);
         	   
-        	 //é¡µé¢ç‚¹å‡»ç¡®å®šè¦å¹²çš„äº‹æƒ…
+        	 //Ò³Ãæµã»÷È·¶¨Òª¸ÉµÄÊÂÇé
         	   boolean deng = false;
 			try {
 				deng = denglu(name,pwd);
@@ -100,8 +100,8 @@ public class ui {
         	   
 				if(deng)
 				   {
-					   //Â å‡è£…è¿›å…¥èŠå¤©å®¤ï¼ˆæ— TGSï¼‰
-					   //å‘Vå‘é€è‡ªå·±çš„ç”¨æˆ·å
+					   //?¼Ù×°½øÈëÁÄÌìÊÒ£¨ÎŞTGS£©
+					   //ÏòV·¢ËÍ×Ô¼ºµÄÓÃ»§Ãû
 						try {
 							
 							 new uitwo(IDc,Kcv);
@@ -117,13 +117,13 @@ public class ui {
           
            	}
            	
-           	else  if(buttonName.equals("å–æ¶ˆ"))
+           	else  if(buttonName.equals("È¡Ïû"))
            	{
            		username.setText("");
                 password.setText("");
            	}
            	
-           	else  if(buttonName.equals("æ³¨å†Œ"))
+           	else  if(buttonName.equals("×¢²á"))
            	{
 				//System.out.println("1");
         		String name = username.getText();
@@ -131,7 +131,7 @@ public class ui {
          	    if(pwd.length()!=8)
          	    {
 					//System.out.println(name+pwd);
-         	    	JOptionPane.showMessageDialog(null, "æ³¨å†Œå¯†ç ä½æ•°è¦ç­‰äº8ï¼", "", JOptionPane.ERROR_MESSAGE);
+         	    	JOptionPane.showMessageDialog(null, "×¢²áÃÜÂëÎ»ÊıÒªµÈÓÚ8£¡", "", JOptionPane.ERROR_MESSAGE);
          	    }
          	    if(pwd.length()==8)
 				{
@@ -146,7 +146,7 @@ public class ui {
 						e1.printStackTrace();
 					}
 				}
-         	    //å¦‚æœå·²ç»æœ‰äº†å°±è¯´å·²ç»æ³¨å†Œäº†
+         	    //Èç¹ûÒÑ¾­ÓĞÁË¾ÍËµÒÑ¾­×¢²áÁË
          	   
            	}
 
@@ -157,7 +157,7 @@ public class ui {
 		 * TS+1
 		 */
 		public static String TSadd(String TS, int sec) throws ParseException {
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ??????????
 			Date utilDate = df.parse(TS);
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(utilDate);
@@ -190,24 +190,24 @@ public class ui {
 				output.writeUTF(send);
 				String receive = null;
 				receive = input.readUTF();
-				String d = receive.substring(34);//è§£å¯†ä¹‹å‰çš„data
+				String d = receive.substring(34);//½âÃÜÖ®Ç°µÄdata
 				String receivejie = DES_wzj.des_jie_da(d, Kc);
-				System.out.println("uiè§£å¯†ä¹‹åçš„data"+receivejie);
+				System.out.println("ui½âÃÜÖ®ºóµÄdata"+receivejie);
 				if(receive.substring(0, 4).equals("1001"))
 				{
 					String errortype = receivejie.substring(0, 4);
 					if(errortype.equals("1111"))
 					{
 						//System.out.println(errortype);
-						//å†™å…¥logæ–‡ä»¶
+						//Ğ´ÈëlogÎÄ¼ş
 						//writelog.write_log(errortype,"src//AS//");
-						JOptionPane.showMessageDialog(null, "è¯¥ç”¨æˆ·å·²ç»å­˜åœ¨", "", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "¸ÃÓÃ»§ÒÑ¾­´æÔÚ", "", JOptionPane.ERROR_MESSAGE);
 						return false;
 					}
 				}
 				else
 					{
-						JOptionPane.showMessageDialog(null, "æ³¨å†ŒæˆåŠŸ", "", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "×¢²á³É¹¦", "", JOptionPane.ERROR_MESSAGE);
 						return true;
 					}
 				return true;
@@ -216,7 +216,7 @@ public class ui {
     public static boolean denglu(String IDc1,String pwd) throws UnknownHostException, IOException, ParseException
     {
         System.out.println("--client--");
-        //Socket(,)å†…å‚æ•°åˆ†åˆ«è®¾ä¸ºæœåŠ¡ç«¯IPå’Œç«¯å£
+        //Socket(,)ÄÚ²ÎÊı·Ö±ğÉèÎª·şÎñ¶ËIPºÍ¶Ë¿Ú
         Socket socket = new Socket(adress_as, 5299);
        // Socket socket = new Socket("127.0.0.1", 5299);
         DataInputStream input = new DataInputStream(socket.getInputStream());
@@ -225,7 +225,7 @@ public class ui {
         String TS = zhuan(TS1);
         IDc = IDc1;
         String Kc = zhuan(pwd);
-        //System.out.println("ç”¨æˆ·è¾“å…¥çš„å¯†é’¥"+Kc+"é•¿åº¦ä¸º"+Kc.length());
+        //System.out.println("ÓÃ»§ÊäÈëµÄÃÜÔ¿"+Kc+"³¤¶ÈÎª"+Kc.length());
         String IDtgs = "1101";
         String state = "0001";
         String remnant = "000000";
@@ -233,34 +233,34 @@ public class ui {
         String data = IDc+ IDtgs +TS;
         String send = state + remnant + blank +data ;
 		output.writeUTF(send);		
-        //å‘é€       
-		//System.out.println("å‘äº†å‘äº†å‘ç»™ASäº†");
+        //·¢ËÍ       
+		//System.out.println("·¢ÁË·¢ÁË·¢¸øASÁË");
         String receive = null;
 		receive = input.readUTF();
-		//System.out.println("serveræœ‰æ¶ˆæ¯äº†");
+		//System.out.println("serverÓĞÏûÏ¢ÁË");
 		
-		//System.out.println("è§£å¯†ä¹‹å‰"+receive);
+		//System.out.println("½âÃÜÖ®Ç°"+receive);
 		String d = receive.substring(34);
-		//System.out.println("è§£å¯†ä¹‹å‰çš„data");
+		//System.out.println("½âÃÜÖ®Ç°µÄdata");
 		//System.out.println(d);
 				
 		
 		String receivejie = DES_wzj.des_jie_da(d, Kc); 
-		//System.out.println("uiè§£å¯†ä¹‹åçš„data"+receivejie);
+		//System.out.println("ui½âÃÜÖ®ºóµÄdata"+receivejie);
        // String Kctgs = receive.substring(34,90);   
-        //å¯ä»¥æ ¹æ®å‘æ¥çš„åé¦ˆçœ‹çœ‹è¿›æ­¥è¿›è¡Œä¸‹ä¸€æ­¥
+        //¿ÉÒÔ¸ù¾İ·¢À´µÄ·´À¡¿´¿´½ø²½½øĞĞÏÂÒ»²½
         if(receive.substring(0, 4).equals("1001"))
         {
      	  String errortype = receive.substring(34, 38);
      	  if(errortype.equals("0001"))
      	  {
-     		  //å†™å…¥logæ–‡ä»¶
-     		  JOptionPane.showMessageDialog(null, "æ— æ­¤ç”¨æˆ·", "", JOptionPane.ERROR_MESSAGE);
+     		  //Ğ´ÈëlogÎÄ¼ş
+     		  JOptionPane.showMessageDialog(null, "ÎŞ´ËÓÃ»§", "", JOptionPane.ERROR_MESSAGE);
      		  return false;
      	  }
      	  else if(errortype.equals("0100"))
      	  {
-     		 JOptionPane.showMessageDialog(null, "ä¸åŒæ­¥", "", JOptionPane.ERROR_MESSAGE);
+     		 JOptionPane.showMessageDialog(null, "²»Í¬²½", "", JOptionPane.ERROR_MESSAGE);
     		  return false;
      	  }
         }
@@ -268,18 +268,18 @@ public class ui {
         {    
         	
         	String Idtgs = huifu(receivejie.substring(64,96));
-        //	System.out.println("Idtgs ï¼ˆç”±å¯†é’¥è§£å¯†åçš„Idtgsï¼‰"+Idtgs);
-        //	System.out.println("æ˜¯å¦ç›¸ç­‰"+Idtgs.equals(IDtgs));
+        //	System.out.println("Idtgs £¨ÓÉÃÜÔ¿½âÃÜºóµÄIdtgs£©"+Idtgs);
+        //	System.out.println("ÊÇ·ñÏàµÈ"+Idtgs.equals(IDtgs));
         	if(Idtgs.equals(IDtgs))
         	{
         		Kctgs = receivejie.substring(0,64);  ///!!!!!!!!
         		String ticket = receivejie.substring(288,672);
-        //		System.out.println("Cæ”¶åˆ°ASç»™çš„Ticket");
+        //		System.out.println("CÊÕµ½AS¸øµÄTicket");
         //		System.out.println(ticket);
         		String fa = split(receive.substring(0, 34)+Kctgs+Idtgs+receivejie.substring(96));
-        //		System.out.println("ä¼šè¯å¯†é’¥"+Kctgs);
+        //		System.out.println("»á»°ÃÜÔ¿"+Kctgs);
         		//System.out.println("Kc,tgs || IDtgs || TS2 || Lifetime2 || Tickettgs"+receive);
-     	//ç»™TGS å‘é€ fa
+     	//¸øTGS ·¢ËÍ fa
         		
 				if(send_TGS(fa))
 				{
@@ -290,8 +290,8 @@ public class ui {
         	}
         	else
         	{
-        		//åŠ å¯†åçš„TGSä¸ç­‰ï¼Œå¯†ç é”™è¯¯
-        		 JOptionPane.showMessageDialog(null, "å¯†ç ä¸æ­£ç¡®", "", JOptionPane.ERROR_MESSAGE);
+        		//¼ÓÃÜºóµÄTGS²»µÈ£¬ÃÜÂë´íÎó
+        		 JOptionPane.showMessageDialog(null, "ÃÜÂë²»ÕıÈ·", "", JOptionPane.ERROR_MESSAGE);
         		 return false;
         		
         	}
@@ -312,7 +312,7 @@ public class ui {
 			String errortype = receive.substring(34, 38);
 	     	  if(errortype.equals("0101"))
 	     	  {
-	     		 JOptionPane.showMessageDialog(null, "TGSè§£ç¥¨å‡ºé”™", "", JOptionPane.ERROR_MESSAGE);
+	     		 JOptionPane.showMessageDialog(null, "TGS½âÆ±³ö´í", "", JOptionPane.ERROR_MESSAGE);
 	     		  return false;
 	     	  }
 		}
@@ -320,12 +320,12 @@ public class ui {
 		else 
 		{
 			String cjietgs = DES_wzj.des_jie_da(receive.substring(34),Kctgs);
-			System.out.println("Cæ”¶åˆ°TGSè§£å‡ºæ¥çš„Ticketv");
+			System.out.println("CÊÕµ½TGS½â³öÀ´µÄTicketv");
 			System.out.println(cjietgs.substring(220,604));
 			
 			String c_send_v = split(receive.substring(0,34)+cjietgs);
 			if(send_V(c_send_v ))
-			//å‘ç»™V
+			//·¢¸øV
 			{
 				return true;
 			}		
@@ -333,7 +333,7 @@ public class ui {
 		return false;
     }
     /*
-     * å‘é€ç»™V
+     * ·¢ËÍ¸øV
      */
     public static boolean send_V(String fa) throws UnknownHostException, IOException, ParseException 
     {
@@ -344,33 +344,33 @@ public class ui {
 		DataOutputStream outputv = new DataOutputStream(socketv.getOutputStream());
 		
 		outputv.writeUTF(fa);
-		//æ ¹æ®V åé¦ˆçš„ä¿¡æ¯è¿›è¡Œå¼¹çª—EKc,v[TS5+1]
+		//¸ù¾İV ·´À¡µÄĞÅÏ¢½øĞĞµ¯´°EKc,v[TS5+1]
 		 String receive1 = inputv.readUTF();
 		 if(receive1.substring(0, 4).equals("1001"))
 	        {
 	     	  String errortype = receive1.substring(34, 38);
 	     	  if(errortype.equals("0110"))
 	     	  {
-	     		  //å†™å…¥logæ–‡ä»¶
-	     		  JOptionPane.showMessageDialog(null, "Vè§£ç¥¨æ®å‡ºé”™", "", JOptionPane.ERROR_MESSAGE);
+	     		  //Ğ´ÈëlogÎÄ¼ş
+	     		  JOptionPane.showMessageDialog(null, "V½âÆ±¾İ³ö´í", "", JOptionPane.ERROR_MESSAGE);
 	     		  return false;
 	     	  }
 	     	 
 	        }
 		 else
 		 {
-			 System.out.println("TS6è§£å¯†å‰"+receive1 +"length"+receive1 .length());
+			 System.out.println("TS6½âÃÜÇ°"+receive1 +"length"+receive1 .length());
 			 
 			 String datajie = DES_wzj.des_jie_da(receive1.substring(34), Kcv);
-			 System.out.println("TS6è§£å¯†å‰"+datajie +"length"+datajie.length());
-			 //dataæ˜¯è§£å¯†åçš„TS5+1
+			 System.out.println("TS6½âÃÜÇ°"+datajie +"length"+datajie.length());
+			 //dataÊÇ½âÃÜºóµÄTS5+1
 			 String renzheng = datajie.substring(0,152);
 			 String huifu = huifu(renzheng); //TS5+1;
-			 System.out.println("Cæ¢å¤å‡ºæ¥çš„TS5+1ï¼Ÿï¼Ÿ"+huifu);
+			 System.out.println("C»Ö¸´³öÀ´µÄTS5+1£¿£¿"+huifu);
 			 String TS = TSadd(TS5,1);
 			 if(huifu.equals(TS))
 			 {
-				 JOptionPane.showMessageDialog(null, "æ•´ä¸ªè®¤è¯æˆåŠŸ", "", JOptionPane.ERROR_MESSAGE);
+				 JOptionPane.showMessageDialog(null, "Õû¸öÈÏÖ¤³É¹¦", "", JOptionPane.ERROR_MESSAGE);
 				 return true;
 			 }
 		 }
@@ -380,25 +380,25 @@ public class ui {
 
 	
     public ui() {
-        //è®¾ç½®çª—ä½“çš„ä½ç½®åŠå¤§å°
+        //ÉèÖÃ´°ÌåµÄÎ»ÖÃ¼°´óĞ¡
         jFrame.setBounds(600, 200, 300, 250);
-        //è®¾ç½®ä¸€å±‚ç›¸å½“äºæ¡Œå¸ƒçš„ä¸œè¥¿
-        c.setLayout(new BorderLayout());//å¸ƒå±€ç®¡ç†å™¨
-        //è®¾ç½®æŒ‰ä¸‹å³ä¸Šè§’Xå·åå…³é—­
+        //ÉèÖÃÒ»²ãÏàµ±ÓÚ×À²¼µÄ¶«Î÷
+        c.setLayout(new BorderLayout());//²¼¾Ö¹ÜÀíÆ÷
+        //ÉèÖÃ°´ÏÂÓÒÉÏ½ÇXºÅºó¹Ø±Õ
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //åˆå§‹åŒ–--å¾€çª—ä½“é‡Œæ”¾å…¶ä»–æ§ä»¶
+        //³õÊ¼»¯--Íù´°ÌåÀï·ÅÆäËû¿Ø¼ş
         init();
-        //è®¾ç½®çª—ä½“å¯è§
+        //ÉèÖÃ´°Ìå¿É¼û
         jFrame.setVisible(true);
     }
     public void init() {
-        /*æ ‡é¢˜éƒ¨åˆ†--North*/
+        /*±êÌâ²¿·Ö--North*/
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new FlowLayout());
-        titlePanel.add(new JLabel("XXXç™»å½•ç³»ç»Ÿ"));
+        titlePanel.add(new JLabel("XXXµÇÂ¼ÏµÍ³"));
         c.add(titlePanel, "North");
         
-        /*è¾“å…¥éƒ¨åˆ†--Center*/
+        /*ÊäÈë²¿·Ö--Center*/
         JPanel fieldPanel = new JPanel();
         fieldPanel.setLayout(null);
         a1.setBounds(50, 20, 50, 20);
@@ -414,7 +414,7 @@ public class ui {
        
         c.add(fieldPanel, "Center");
         
-        /*æŒ‰é’®éƒ¨åˆ†--South*/
+        /*°´Å¥²¿·Ö--South*/
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
         buttonPanel.add(button1); 
@@ -426,7 +426,7 @@ public class ui {
         button2.addActionListener(ourListener);
         button3.addActionListener(ourListener);
     }
-    //æµ‹è¯•
+    //²âÊÔ
     
     public static void main(String[] args) {
         new ui();
@@ -440,7 +440,7 @@ public class ui {
 	    return df.format(calendar.getTime());
     }
     /*
-	 *åè¿›åˆ¶è½¬äºŒè¿›åˆ¶ 
+	 *Ê®½øÖÆ×ª¶ş½øÖÆ 
 	 */
 	public static int[] binaryToDecimal(int n){
 		 	int j[] = new int[8];
@@ -452,7 +452,7 @@ public class ui {
 			    return j;
 	 }
 	/*
-	 * äºŒè¿›åˆ¶8ä½8ä½æ¢å¤æˆ
+	 * ¶ş½øÖÆ8Î»8Î»»Ö¸´³É
 	 */
 	public static String huifu(String a)
 	{
@@ -468,7 +468,7 @@ public class ui {
 		String huifu = "";
 		if(length%8!=0)
 		{
-			return "é8çš„æ•´æ•°å€";
+			return "·Ç8µÄÕûÊı±¶";
 		}
 		//zhuan
 		for(int i=0;i<length;i=i+8)
@@ -483,7 +483,7 @@ public class ui {
 		return huifu;
 	}
 	/*
-	 * å°†stringå­—ç¬¦ä¸²ç¼–ç¨‹asciiç äºŒè¿›åˆ¶ç¼–ç çš„stringå­—ç¬¦ä¸²
+	 * ½«string×Ö·û´®±à³ÌasciiÂë¶ş½øÖÆ±àÂëµÄstring×Ö·û´®
 	 */
 	public static String zhuan(String daizhuan) 
 	{
@@ -491,14 +491,14 @@ public class ui {
 		char M[] = daizhuan.toCharArray();
 		int M1[] = new int[M.length];
 		int []tmp = new int[8]; 
-		String s ="";  //è¿›è¡ŒäºŒè¿›åˆ¶çš„ç´¯åŠ 
+		String s ="";  //½øĞĞ¶ş½øÖÆµÄÀÛ¼Ó
 		for(int i=0;i<M.length;i++)
 		{
-			M1[i] = M[i]; //æ¯ä¸€ä½éƒ½æ˜¯intäº†ï¼Œç°åœ¨å¼€å§‹è½¬æ¢äºŒè¿›åˆ¶
-			tmp =  binaryToDecimal(M1[i]); //æ¯ä¸€ä½éƒ½è½¬æˆäº†äºŒè¿›åˆ¶
+			M1[i] = M[i]; //Ã¿Ò»Î»¶¼ÊÇintÁË£¬ÏÖÔÚ¿ªÊ¼×ª»»¶ş½øÖÆ
+			tmp =  binaryToDecimal(M1[i]); //Ã¿Ò»Î»¶¼×ª³ÉÁË¶ş½øÖÆ
 			    for(int j =0;j<8;j++)
 			    {
-			    	s = s + String.valueOf(tmp[j]); //åŠ å…¥stringä¸­
+			    	s = s + String.valueOf(tmp[j]); //¼ÓÈëstringÖĞ
 			    	
 			    }
 		}
@@ -506,13 +506,13 @@ public class ui {
 	}
 	
    	/*
-	 * ç”±ä¸Šä¸€æ­¥åŒ… è¿”å›ä¸‹ä¸€æ­¥è¦å‘é€çš„åŒ…å’Œå‡ºé”™ä¿¡æ¯
+	 * ÓÉÉÏÒ»²½°ü ·µ»ØÏÂÒ»²½Òª·¢ËÍµÄ°üºÍ³ö´íĞÅÏ¢
 	 */
 	  public static String split(String get)
 		{
-			//å·²çŸ¥çŠ¶æ€ç å‰4ä½ï¼Œå†—ä½™6ä½ï¼Œä¿ç•™24ï¼Œdataæ ¼å¼å·²çŸ¥ã€‚
+			//ÒÑÖª×´Ì¬ÂëÇ°4Î»£¬ÈßÓà6Î»£¬±£Áô24£¬data¸ñÊ½ÒÑÖª¡£
 	    	String state,remnant,blank,data;
-	    	//substring å·¦é—­å³å¼€
+	    	//substring ×ó±ÕÓÒ¿ª
 	    	state = get.substring(0, 4);
 	    	remnant = get.substring(4, 10); 
 	    	int duoyu = 0;
@@ -528,8 +528,8 @@ public class ui {
 	    	data = get.substring(34,get.length()-duoyu); 
 			//////////
 	    	/*
-	    	 * 0001 C->ASç”³è¯·ç¥¨æ® 
-	    	 * 0010 AS->Cè¿”å›ç¥¨æ®
+	    	 * 0001 C->ASÉêÇëÆ±¾İ 
+	    	 * 0010 AS->C·µ»ØÆ±¾İ
 	    	 * 0011 C->TGS
 	    	 * 0100 TGS->C  
 	    	 * 
@@ -540,7 +540,7 @@ public class ui {
 	    	}
 	    	else if(state.equals("0010"))
 	    	{
-	    		//å…ˆDESè§£å¯†
+	    		//ÏÈDES½âÃÜ
 	    		String IDv = "1001";
 	    		
 	    		String Kc_tgs = data.substring(0, 64);
@@ -548,12 +548,12 @@ public class ui {
 	    		String TS2 = data.substring(68, 220);
 	    		String lifetime2  = data.substring(220, 260);
 	    		String Ticket = data.substring(260, 644);
-	    		System.out.println("Cè¦å‘ç»™TGSçš„ticket");
+	    		System.out.println("CÒª·¢¸øTGSµÄticket");
 	    		System.out.println(Ticket);
-	    		//å…ˆåˆ¤æ–­åŒæ­¥
+	    		//ÏÈÅĞ¶ÏÍ¬²½
 	    		String auth = Create_Authenticator(IDc,Kc_tgs);
-	    		//å‘é€å†…å®¹ä¸º
-	    		System.out.println("Cè¦å‘ç»™TGSçš„auth");
+	    		//·¢ËÍÄÚÈİÎª
+	    		System.out.println("CÒª·¢¸øTGSµÄauth");
 	    		System.out.println(auth);
 	    		String data1 = IDv + Ticket + auth;
 	    		return "0011"+"000000"+"000000000000000000000000"+data1;
@@ -563,18 +563,18 @@ public class ui {
 	    	{
 	    		
 	    		Kcv = data.substring(0, 64);
-	    		 System.out.println("authen to våŠ å¯†ç”¨çš„é’¥åŒ™"+ Kcv+"length"+Kcv.length());
+	    		 System.out.println("authen to v¼ÓÃÜÓÃµÄÔ¿³×"+ Kcv+"length"+Kcv.length());
 	    		String IDv = data.substring(64,68);
 	    		String TS = data.substring(68, 68+152);
 	    		String Ticketv = data.substring(68+152);
-	    		System.out.println("Cè¦å‘ç»™Vçš„ticket");
+	    		System.out.println("CÒª·¢¸øVµÄticket");
 	    		System.out.println(Ticketv);
-	    		System.out.println("Cè¦å‘ç»™Vçš„ticketé•¿åº¦");
+	    		System.out.println("CÒª·¢¸øVµÄticket³¤¶È");
 	    		System.out.println(Ticketv.length());
 	    		String auth = Create_Authenticator(IDc,Kcv);
-	    		System.out.println("Cè¦å‘ç»™Vçš„auth");
+	    		System.out.println("CÒª·¢¸øVµÄauth");
 	    		System.out.println(auth);
-	    		System.out.println("Cè¦å‘ç»™Vçš„authé•¿åº¦");
+	    		System.out.println("CÒª·¢¸øVµÄauth³¤¶È");
 	    		System.out.println(auth.length());
 	    		
 	    		String datav = Ticketv + auth;
@@ -586,7 +586,7 @@ public class ui {
 	    	return get;
 		}
 	  /*
-  	 * éšæœºç”Ÿæˆ56ä½ä¼šè¯å¯†é’¥
+  	 * Ëæ»úÉú³É56Î»»á»°ÃÜÔ¿
   	 * 
   	 */
   	public static String create_sessionkey()
@@ -595,7 +595,7 @@ public class ui {
   		String s = "";
   		for(int i=0;i<64;i++)
   		{
-  			int r = (int)(2*Math.random()); //æ¯æ¬¡ç”Ÿæˆ0å’Œ1 
+  			int r = (int)(2*Math.random()); //Ã¿´ÎÉú³É0ºÍ1 
   			s = s + r;
   		}
   		return s;
@@ -628,13 +628,13 @@ public class ui {
 		String TSzhuan  = zhuan(TS3);
 		String[] authen = new String[1];
 		authen[0] = IDc+ADczhuan+TSzhuan;
-		System.out.println("åŠ å¯†å‰authenticator"+"length"+authen[0].length());
+		System.out.println("¼ÓÃÜÇ°authenticator"+"length"+authen[0].length());
 		System.out.println(authen[0]);
 		int a = patch(authen); 
 		String authjia = DES_wzj.des_jia_da(authen[0], key);
-		System.out.println("åŠ å¯†åauthenticator"+"length"+authjia.length());
+		System.out.println("¼ÓÃÜºóauthenticator"+"length"+authjia.length());
 		System.out.println(authjia);
-		// ç”¨Kcï¼ŒtgsåŠ å¯†å¯¹ç§°å‘é€ 
+		// ÓÃKc£¬tgs¼ÓÃÜ¶Ô³Æ·¢ËÍ 
 		return authjia;
 	}
   
