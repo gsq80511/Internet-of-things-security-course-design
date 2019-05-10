@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import DES.*;
 import RSA.rsa;
+import log.writelog;
 //import RSA.*;
 //AS服务器
 import DB.mysql;

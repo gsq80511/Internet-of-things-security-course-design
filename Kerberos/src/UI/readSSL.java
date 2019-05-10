@@ -1,4 +1,4 @@
-package AS;
+package UI;
 
 import java.io.*;
 
